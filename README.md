@@ -24,7 +24,8 @@ After installing the mod, open the `config.json` file and set the value to true 
 
 `false` - Skill will remain at the same progress level
 
-### Vanilla `config.json`
+## Vanilla `config.json`
+
 
 ```json{
 "skillProgressRange": 3000,
@@ -75,5 +76,11 @@ After installing the mod, open the `config.json` file and set the value to true 
     "HideoutManagement": false
   }
 }
+```
+
+## [Example-screenshot](#Example-screenshot)
+
+![alt text](https://raw.githubusercontent.com/Spaghetti-jpg/Random-skill-level-SPT-Mod/refs/heads/main/screenshot-1.png)
+
 
 
