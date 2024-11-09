@@ -1,6 +1,6 @@
 {
-    "name": "Random skill level",
-    "version": "1.0.1",
+    "name": "Random skill level and mastering",
+    "version": "1.0.2",
     "sptVersion": "~3.9",
     "loadBefore": [],
     "loadAfter": [],
