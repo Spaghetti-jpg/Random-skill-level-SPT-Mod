@@ -6,7 +6,7 @@ import { ILogger } from "@spt/models/spt/utils/ILogger";
 import { LogTextColor } from "@spt/models/spt/logging/LogTextColor";
 import * as config from "../config/config.json";
 
-class RandomSkillLevelMod implements IPreSptLoadMod {
+class RandomSkillLevelAndMasteringMod implements IPreSptLoadMod {
     private logger: ILogger;
 
     preSptLoad(container: DependencyContainer): void {
@@ -15,7 +15,7 @@ class RandomSkillLevelMod implements IPreSptLoadMod {
         this.logger = container.resolve<ILogger>("WinstonLogger");
 
         const logMessage = (message: string, color: LogTextColor = LogTextColor.GREEN) => {
-            this.logger.logWithColor(`[Random skill level] ${message}`, color);
+            this.logger.logWithColor(`[Random skill level and mastering] ${message}`, color);
         };
 
         const hasSkills = (pmcProfile: any) => pmcProfile?.Skills?.Common;
@@ -38,13 +38,37 @@ class RandomSkillLevelMod implements IPreSptLoadMod {
             }
         };
 
+        const updateMastering = (pmcProfile: any) => {
+            if (!pmcProfile.Skills?.Mastering) {
+                pmcProfile.Skills.Mastering = [];
+            }
+
+            const group = pmcProfile.Info.Side === "Bear" ? "Bear" : "USEC";
+            const weapons = config.Mastering[group];
+            if (!weapons) return;
+
+            weapons.forEach((weaponId: string) => {
+                let weaponMastery = pmcProfile.Skills.Mastering.find((w: any) => w.Id === weaponId);
+                if (!weaponMastery) {
+                    weaponMastery = { Id: weaponId, Progress: 0 };
+                    pmcProfile.Skills.Mastering.push(weaponMastery);
+                }
+                if (weaponMastery.Progress <= config.minMasteringLevel) {
+                    const randomMastering = Math.floor(Math.random() * (config.maxMasteringLevel - config.minMasteringLevel + 1)) + config.minMasteringLevel;
+                    weaponMastery.Progress = randomMastering;
+                    logMessage(`${weaponId} mastering level updated to: ${randomMastering}`);
+                }
+            });
+        };
+
         const profileAction = async (url: any, info: any, sessionID: any, output: any, actionName: string) => {
             try {
                 const pmcProfile = profileHelper.getPmcProfile(sessionID);
                 if (hasSkills(pmcProfile)) {
                     updateSkills(pmcProfile);
+                    updateMastering(pmcProfile);
                 } else {
-                    logMessage(`PMC Profile or Skills not created yet during ${actionName}. Skipping skill updates.`, LogTextColor.YELLOW);
+                    logMessage(`PMC Profile or Skills not created yet during ${actionName}. Skipping updates.`, LogTextColor.YELLOW);
                 }
             } catch (error) {
                 logMessage(`Error during ${actionName}: ${error.message}`, LogTextColor.RED);
@@ -53,7 +77,7 @@ class RandomSkillLevelMod implements IPreSptLoadMod {
         };
 
         staticRMS.registerStaticRouter(
-            "RandomSkillLevelMod_GameStart",
+            "RandomSkillLevelAndMasteringMod_GameStart",
             [
                 {
                     url: "/client/game/start",
@@ -64,7 +88,7 @@ class RandomSkillLevelMod implements IPreSptLoadMod {
         );
 
         staticRMS.registerStaticRouter(
-            "RandomSkillLevelMod_ProfileCreate",
+            "RandomSkillLevelAndMasteringMod_ProfileCreate",
             [
                 {
                     url: "/client/game/profile/create",
@@ -76,4 +100,4 @@ class RandomSkillLevelMod implements IPreSptLoadMod {
     }
 }
 
-module.exports = { mod: new RandomSkillLevelMod() };
+module.exports = { mod: new RandomSkillLevelAndMasteringMod() };
