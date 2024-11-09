@@ -1,5 +1,6 @@
 {
-"skillProgressRange": 3000,
+  "minSkillLevel": 0,
+  "maxSkillLevel": 3000,
 
   "Skills": {
     "Endurance": true,
