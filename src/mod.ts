@@ -8,7 +8,6 @@ import * as config from "../config/config.json";
 
 class RandomSkillLevelMod implements IPreSptLoadMod {
     private logger: ILogger;
-    private skillProgressRange: number = config.skillProgressRange || 3000;
 
     preSptLoad(container: DependencyContainer): void {
         const staticRMS = container.resolve<StaticRouterModService>("StaticRouterModService");
@@ -30,10 +29,10 @@ class RandomSkillLevelMod implements IPreSptLoadMod {
             for (const skillId in config.Skills) {
                 if (config.Skills[skillId]) {
                     const skill = pmcProfile.Skills.Common.find((s: any) => s.Id === skillId);
-                    if (skill && skill.Progress === 0) {
-                        const randomProgress = Math.floor(Math.random() * (this.skillProgressRange + 1));
+                    if (skill && skill.Progress <= config.minSkillLevel) {
+                        const randomProgress = Math.floor(Math.random() * (config.maxSkillLevel - config.minSkillLevel + 1)) + config.minSkillLevel;
                         skill.Progress = randomProgress;
-                        logMessage(`${skillId} skill was 0, changed to: ${randomProgress}`);
+                        logMessage(`${skillId} skill was below minimum, changed to: ${randomProgress}`);
                     }
                 }
             }
@@ -69,7 +68,7 @@ class RandomSkillLevelMod implements IPreSptLoadMod {
             [
                 {
                     url: "/client/game/profile/create",
-                    action: (url, info, sessionID, output) => profileAction(url, info, sessionID, output, "profile creation")
+                    action: async (url, info, sessionID, output) => profileAction(url, info, sessionID, output, "profile creation")
                 }
             ],
             "aki"
