@@ -12,8 +12,11 @@ You will no longer have to level up from scratch, your skills will be similar to
 
 ## A new profile is recommended!
 
-This mod only changes the level of skills that are zero. Each new profile will have different skill levels
+Implemented a system for checking the selected faction in the profile. If you choose Bear, then the mastery of weapons will increase only for weapons common in the Russian army. If you choose USEC, then the mastery of weapons will increase for weapons common in NATO countries.
 
+Simply put, Bear does not know how to handle NATO weapons, and USEC does not know how to handle Russian weapons
+
+This mod only changes the skill and mastery level of weapons, which are zero. Each profile will have different skill and mastery levels.
 
 ## [Installation](#installation)
 
@@ -24,8 +27,14 @@ This mod only changes the level of skills that are zero. Each new profile will h
 After installing the mod, open the `config.json` file and set the value to true or falls for the selected skills.
 
 `true` - random skill level
-
 `false` - Skill will remain at the same progress level
+
+`minSkillLevel` contains the minimum skill level, by default equals 0
+`maxSkillLevel` contains the maximum skill level, by default equals 3000
+`minMasteringLevel` contains the minimum weapon mastering level, by default equals 0
+`maxMasteringLevel` contains the maximum weapon mastering level, by default equals 1000
+
+If you want to add a new weapon for some faction, then use the config.json file
 
 ## Vanilla `config.json`
 
