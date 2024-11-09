@@ -1,6 +1,9 @@
 # Random-skill-level-SPT-Mod
 You're a professional PMC, not a baby
 
+![alt text](https://raw.githubusercontent.com/Spaghetti-jpg/Random-skill-level-SPT-Mod/refs/heads/main/screenshot-1.png)
+
+
 ## [About](#about)
 
 I really didn't like that we play for a PMC that went through many conflicts and didn't get any skills. This mod is designed to fix that because each person is individual in their skills, so each profile you create will have different skills.
@@ -77,10 +80,5 @@ After installing the mod, open the `config.json` file and set the value to true 
   }
 }
 ```
-
-## [Example-screenshot](#Example-screenshot)
-
-![alt text](https://raw.githubusercontent.com/Spaghetti-jpg/Random-skill-level-SPT-Mod/refs/heads/main/screenshot-1.png)
-
 
 
