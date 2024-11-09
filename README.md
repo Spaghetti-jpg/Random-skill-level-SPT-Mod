@@ -31,7 +31,11 @@ After installing the mod, open the `config.json` file and set the value to true 
 
 
 ```json{
-"skillProgressRange": 3000,
+{
+  "minSkillLevel": 0,
+  "maxSkillLevel": 3000,
+  "minMasteringLevel": 0,
+  "maxMasteringLevel": 1000,
 
   "Skills": {
     "Endurance": true,
@@ -77,6 +81,33 @@ After installing the mod, open the `config.json` file and set the value to true 
     "Barter": true,
     "Crafting": false,
     "HideoutManagement": false
+  },
+    "Mastering": {
+      "Bear": [
+        "AK74",
+        "AKM",
+        "SVD",
+        "VSS",
+        "DVL",
+        "KS23",
+        "VSK94",
+        "T5000",
+        "SR2",
+        "RPD"
+      ],
+      "USEC": [
+        "M4",
+        "MDR",
+        "MPX",
+        "MP5",
+        "SA-58",
+        "P90",
+        "AXMC",
+        "STM-9",
+        "MP7",
+        "SR25",
+        "M1A"
+      ]
   }
 }
 ```
