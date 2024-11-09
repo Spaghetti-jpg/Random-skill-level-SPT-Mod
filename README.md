@@ -28,11 +28,15 @@ This mod only changes the skill and mastery level of weapons, which are zero. Ea
 After installing the mod, open the `config.json` file and set the value to true or falls for the selected skills.
 
 `true` - random skill level
+
 `false` - Skill will remain at the same progress level
 
 `minSkillLevel` contains the minimum skill level, by default equals 0
+
 `maxSkillLevel` contains the maximum skill level, by default equals 3000
+
 `minMasteringLevel` contains the minimum weapon mastering level, by default equals 0
+
 `maxMasteringLevel` contains the maximum weapon mastering level, by default equals 1000
 
 If you want to add a new weapon for some faction, then use the config.json file
