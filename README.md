@@ -3,6 +3,7 @@ You're a professional PMC, not a baby
 
 ![alt text](https://raw.githubusercontent.com/Spaghetti-jpg/Random-skill-level-SPT-Mod/refs/heads/main/screenshot-1.png)
 
+![alt text](https://raw.githubusercontent.com/Spaghetti-jpg/Random-skill-level-SPT-Mod/refs/heads/main/screenshot-2.png)
 
 ## [About](#about)
 
